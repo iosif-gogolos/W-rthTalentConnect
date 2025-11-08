@@ -82,9 +82,9 @@
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.5);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background:rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   z-index:45;
   transition:opacity .25s ease, backdrop-filter .25s ease;
   opacity:0;
@@ -532,8 +532,23 @@ body{
     pointer-events:auto;
   }
   
+  /* Prevent body scroll when sidebar open */
+  .sidebar-open body{
+    overflow: hidden;
+  }
+  
   /* Ensure app doesn't scroll horizontally */
-  .app{ overflow-x: hidden; }
+  .app{ 
+    overflow-x: hidden;
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Ensure main content stays below sidebar */
+  .main{
+    position: relative;
+    z-index: 1;
+  }
   
   .brand h1{ font-size:13px; }
   .nav button{ font-size:13px; padding:9px; }
@@ -548,6 +563,20 @@ body{
     flex-direction:row;
     gap:8px;
     align-items:center;
+    position: relative;
+    z-index: 5;
+  }
+  
+  /* Fix profile cards visibility */
+  .profile{
+    position: relative;
+    z-index: auto;
+  }
+  
+  /* Ensure cards don't get hidden */
+  .card{
+    position: relative;
+    z-index: auto;
   }
 }
 
@@ -555,9 +584,17 @@ body{
 @media (max-width: 600px){
   html{ font-size:14px; }
   body{ padding:12px; }
-  .app{ gap:12px; }
+  .app{ 
+    gap:12px;
+    display: flex;
+    flex-direction: column;
+  }
   .brand .logo{ width:36px; height:36px; }
-  .card{ padding:10px; border-radius:10px; }
+  .card{ 
+    padding:10px; 
+    border-radius:10px;
+    width: 100%;
+  }
   
   /* FIXED: Better mobile topbar layout */
   .topbar{ 
@@ -565,6 +602,7 @@ body{
     flex-wrap:wrap;
     gap:8px; 
     align-items:center;
+    width: 100%;
   }
   
   /* Hamburger on left */
@@ -588,7 +626,10 @@ body{
   
   .search input{ font-size:13px; }
   .file-item{ flex-direction:column; align-items:flex-start; gap:8px; }
-  .profile{ padding:10px; }
+  .profile{ 
+    padding:10px;
+    flex-wrap: wrap;
+  }
   .pill{ font-size:11px; padding:6px 6px; }
   .meta-row{ flex-direction:column; gap:6px; align-items:flex-start; }
   
@@ -597,5 +638,17 @@ body{
     flex-direction:column;
     align-items:flex-start;
     gap:6px;
+  }
+  
+  /* Fix section layout on mobile */
+  section[style*="grid-template-columns"]{
+    display: flex !important;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  /* Avatar text should be hidden on very small screens */
+  .avatar > div:first-child{
+    display: none;
   }
 }
