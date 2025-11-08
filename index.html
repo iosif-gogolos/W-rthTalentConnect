@@ -1,451 +1,544 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Würth Talent Connect — Co-Innovation Platform</title>
-<meta name="description" content="Transform hiring into co-innovation: Learn B2B design, solve real challenges, get hired." />
-<style>
-/* -------------------------
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Würth Talent Connect — Co-Innovation Platform</title>
+  <meta name="description"
+    content="Transform hiring into co-innovation: Learn B2B design, solve real challenges, get hired." />
+  <style>
+    /* -------------------------
    Design tokens & globals
    ------------------------- */
-:root {
-  --bg: #0a0e1a;
-  --card: #141821;
-  --card-hover: #1a1f2e;
-  --muted: #8b92a8;
-  --accent: #cc0000;
-  --accent-2: #90112C;
-  --glass: rgba(255, 255, 255, 0.04);
-  --success: #10b981;
-  --warning: #f59e0b;
-  --text: #e6eef8;
-  --border: rgba(255, 255, 255, 0.08);
-  --radius: 12px;
-  --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-  font-size: 15px;
-}
+    :root {
+      --bg: #0a0e1a;
+      --card: #141821;
+      --card-hover: #1a1f2e;
+      --muted: #8b92a8;
+      --accent: #cc0000;
+      --accent-2: #90112C;
+      --glass: rgba(255, 255, 255, 0.04);
+      --success: #10b981;
+      --warning: #f59e0b;
+      --text: #e6eef8;
+      --border: rgba(255, 255, 255, 0.08);
+      --radius: 12px;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      font-size: 15px;
+    }
 
-[data-theme="light"] {
-  --bg: #f5f7fb;
-  --card: #ffffff;
-  --card-hover: #f8f9fb;
-  --muted: #6b7280;
-  --text: #0f1724;
-  --border: rgba(0, 0, 0, 0.08);
-  --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
+    [data-theme="light"] {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --card-hover: #f8f9fb;
+      --muted: #6b7280;
+      --text: #0f1724;
+      --border: rgba(0, 0, 0, 0.08);
+      --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
 
-*, *::before, *::after { box-sizing: border-box; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  min-height: 100vh;
-  line-height: 1.6;
-}
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
 
-/* -------------------------
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    /* -------------------------
    Layout
    ------------------------- */
-.container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 20px;
-}
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
 
-.header {
-  background: var(--card);
-  border-bottom: 1px solid var(--border);
-  padding: 16px 0;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  backdrop-filter: blur(12px);
-}
+    .header {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(12px);
+    }
 
-.header-inner {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 20px;
-}
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-weight: 700;
-  font-size: 18px;
-}
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 18px;
+    }
 
-.logo-icon {
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 800;
-}
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 800;
+    }
 
-.nav {
-  display: flex;
-  gap: 8px;
-  align-items: center;
-}
+    .nav {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
 
-.nav-btn {
-  background: transparent;
-  border: 0;
-  padding: 8px 16px;
-  border-radius: 8px;
-  color: var(--text);
-  cursor: pointer;
-  font-size: 14px;
-  transition: all 0.2s;
-}
+    .nav-btn {
+      background: transparent;
+      border: 0;
+      padding: 8px 16px;
+      border-radius: 8px;
+      color: var(--text);
+      cursor: pointer;
+      font-size: 14px;
+      transition: all 0.2s;
+    }
 
-.nav-btn:hover {
-  background: var(--glass);
-}
+    .nav-btn:hover {
+      background: var(--glass);
+    }
 
-.nav-btn.active {
-  background: var(--accent);
-  color: white;
-}
+    .nav-btn.active {
+      background: var(--accent);
+      color: white;
+    }
 
-.role-toggle {
-  background: var(--glass);
-  border: 1px solid var(--border);
-  padding: 4px;
-  border-radius: 10px;
-  display: flex;
-  gap: 4px;
-}
+    .role-toggle {
+      background: var(--glass);
+      border: 1px solid var(--border);
+      padding: 4px;
+      border-radius: 10px;
+      display: flex;
+      gap: 4px;
+    }
 
-.role-toggle button {
-  padding: 8px 16px;
-  border: 0;
-  background: transparent;
-  color: var(--muted);
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 13px;
-  font-weight: 600;
-  transition: all 0.2s;
-}
+    .role-toggle button {
+      padding: 8px 16px;
+      border: 0;
+      background: transparent;
+      color: var(--muted);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
 
-.role-toggle button.active {
-  background: var(--accent);
-  color: white;
-}
+    .role-toggle button.active {
+      background: var(--accent);
+      color: white;
+    }
 
-/* Mobile menu */
-.mobile-toggle {
-  display: none;
-  background: transparent;
-  border: 0;
-  padding: 8px;
-  cursor: pointer;
-  color: var(--text);
-}
+    /* Mobile menu */
+    .mobile-toggle {
+      display: none;
+      background: transparent;
+      border: 0;
+      padding: 8px;
+      cursor: pointer;
+      color: var(--text);
+    }
 
-.hamburger {
-  width: 24px;
-  height: 20px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
+    .hamburger {
+      width: 24px;
+      height: 20px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
 
-.hamburger span {
-  width: 100%;
-  height: 2px;
-  background: currentColor;
-  border-radius: 2px;
-  transition: all 0.3s;
-}
+    .hamburger span {
+      width: 100%;
+      height: 2px;
+      background: currentColor;
+      border-radius: 2px;
+      transition: all 0.3s;
+    }
 
-/* -------------------------
+    /* -------------------------
    Card system
    ------------------------- */
-.card {
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
-  box-shadow: var(--shadow);
-  transition: all 0.2s;
-}
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      box-shadow: var(--shadow);
+      transition: all 0.2s;
+    }
 
-.card:hover {
-  border-color: rgba(255, 255, 255, 0.12);
-}
+    .card:hover {
+      border-color: rgba(255, 255, 255, 0.12);
+    }
 
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 16px;
-}
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 16px;
+    }
 
-.card-title {
-  font-size: 20px;
-  font-weight: 700;
-  margin: 0 0 4px 0;
-}
+    .card-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0 0 4px 0;
+    }
 
-.card-subtitle {
-  color: var(--muted);
-  font-size: 14px;
-}
+    .card-subtitle {
+      color: var(--muted);
+      font-size: 14px;
+    }
 
-/* -------------------------
+    /* -------------------------
    Grid layouts
    ------------------------- */
-.grid {
-  display: grid;
-  gap: 20px;
-  margin-top: 20px;
-}
+    .grid {
+      display: grid;
+      gap: 20px;
+      margin-top: 20px;
+    }
 
-.grid-2 { grid-template-columns: repeat(2, 1fr); }
-.grid-3 { grid-template-columns: repeat(3, 1fr); }
-.grid-auto { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+    .grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
 
-/* -------------------------
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid-auto {
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+
+    /* -------------------------
    Components
    ------------------------- */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 20px;
-  border: 0;
-  border-radius: 8px;
-  background: var(--accent);
-  color: white;
-  font-weight: 600;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 20px;
+      border: 0;
+      border-radius: 8px;
+      background: var(--accent);
+      color: white;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
 
-.btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(204, 0, 0, 0.3);
-}
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(204, 0, 0, 0.3);
+    }
 
-.btn-secondary {
-  background: var(--glass);
-  color: var(--text);
-  border: 1px solid var(--border);
-}
+    .btn-secondary {
+      background: var(--glass);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
 
-.btn-small {
-  padding: 6px 12px;
-  font-size: 13px;
-}
+    .btn-small {
+      padding: 6px 12px;
+      font-size: 13px;
+    }
 
-.badge {
-  display: inline-block;
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-  background: var(--glass);
-  color: var(--text);
-  border: 1px solid var(--border);
-}
+    .badge {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      background: var(--glass);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
 
-.badge-success { background: rgba(16, 185, 129, 0.1); color: var(--success); border-color: var(--success); }
-.badge-warning { background: rgba(245, 158, 11, 0.1); color: var(--warning); border-color: var(--warning); }
+    .badge-success {
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--success);
+      border-color: var(--success);
+    }
 
-.progress-bar {
-  height: 8px;
-  background: var(--glass);
-  border-radius: 999px;
-  overflow: hidden;
-  margin: 8px 0;
-}
+    .badge-warning {
+      background: rgba(245, 158, 11, 0.1);
+      color: var(--warning);
+      border-color: var(--warning);
+    }
 
-.progress-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent), var(--accent-2));
-  border-radius: 999px;
-  transition: width 0.3s;
-}
+    .progress-bar {
+      height: 8px;
+      background: var(--glass);
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 8px 0;
+    }
 
-/* -------------------------
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      border-radius: 999px;
+      transition: width 0.3s;
+    }
+
+    /* -------------------------
    Challenge card
    ------------------------- */
-.challenge-card {
-  position: relative;
-  overflow: hidden;
-}
+    .challenge-card {
+      position: relative;
+      overflow: hidden;
+    }
 
-.challenge-header {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-}
+    .challenge-header {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
 
-.challenge-icon {
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, #1a2332, #0f1724);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 24px;
-  flex-shrink: 0;
-}
+    .challenge-icon {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #1a2332, #0f1724);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      flex-shrink: 0;
+    }
 
-.challenge-meta {
-  display: flex;
-  gap: 12px;
-  margin-top: 12px;
-  flex-wrap: wrap;
-}
+    .challenge-meta {
+      display: flex;
+      gap: 12px;
+      margin-top: 12px;
+      flex-wrap: wrap;
+    }
 
-.challenge-stat {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  color: var(--muted);
-  font-size: 13px;
-}
+    .challenge-stat {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 13px;
+    }
 
-/* -------------------------
+    /* -------------------------
    Learning resources
    ------------------------- */
-.resource-card {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  padding: 16px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--glass);
-  cursor: pointer;
-  transition: all 0.2s;
-}
+    .resource-card {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      padding: 16px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--glass);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
 
-.resource-card:hover {
-  background: var(--card-hover);
-  transform: translateX(4px);
-}
+    .resource-card:hover {
+      background: var(--card-hover);
+      transform: translateX(4px);
+    }
 
-.resource-icon {
-  width: 48px;
-  height: 48px;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  flex-shrink: 0;
-}
+    .resource-icon {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
 
-/* -------------------------
+    /* -------------------------
    Stats dashboard
    ------------------------- */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 16px;
-  margin-bottom: 24px;
-}
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
 
-.stat-card {
-  padding: 20px;
-  text-align: center;
-}
+    .stat-card {
+      padding: 20px;
+      text-align: center;
+    }
 
-.stat-value {
-  font-size: 32px;
-  font-weight: 800;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
+    .stat-value {
+      font-size: 32px;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
 
-.stat-label {
-  color: var(--muted);
-  font-size: 13px;
-  margin-top: 4px;
-}
+    .stat-label {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }
 
-/* -------------------------
+    /* -------------------------
    Responsive
    ------------------------- */
-@media (max-width: 900px) {
-  .mobile-toggle { display: block; }
-  
-  .nav {
-    position: fixed;
-    top: 72px;
-    left: 0;
-    right: 0;
-    background: var(--card);
-    border-bottom: 1px solid var(--border);
-    flex-direction: column;
-    padding: 16px;
-    gap: 8px;
-    transform: translateY(-100%);
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.3s;
-  }
-  
-  .nav.active {
-    transform: translateY(0);
-    opacity: 1;
-    pointer-events: all;
-  }
-  
-  .nav-btn {
-    width: 100%;
-    text-align: left;
-  }
-  
-  .grid-2, .grid-3 { grid-template-columns: 1fr; }
-}
+    @media (max-width: 900px) {
+      .mobile-toggle {
+        display: block;
+      }
 
-@media (max-width: 600px) {
-  .container { padding: 0 16px; }
-  .card { padding: 16px; }
-  .challenge-header { flex-direction: column; }
-  .stats-grid { grid-template-columns: 1fr; }
-  
-  .logo-text { display: none; }
-  .role-toggle { padding: 2px; }
-  .role-toggle button { padding: 6px 12px; font-size: 12px; }
-}
+      .nav {
+        position: fixed;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: var(--card);
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        padding: 16px;
+        gap: 8px;
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s;
+      }
 
-/* -------------------------
+      .nav.active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      .nav-btn {
+        width: 100%;
+        text-align: left;
+      }
+
+      .grid-2,
+      .grid-3 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .candidate-actions {
+        flex-direction: column !important;
+        gap: 8px !important;
+        width: 100%;
+      }
+
+      .candidate-actions .btn,
+      .candidate-actions .btn-small,
+      .candidate-actions .btn-secondary {
+        width: 100%;
+        min-width: 0;
+        box-sizing: border-box;
+      }
+
+      .container {
+        padding: 0 16px;
+      }
+
+      .card {
+        padding: 16px;
+      }
+
+      .challenge-header {
+        flex-direction: column;
+      }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .logo-text {
+        display: none;
+      }
+
+      .role-toggle {
+        padding: 2px;
+      }
+
+      .role-toggle button {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+    }
+
+    /* -------------------------
    Utility classes
    ------------------------- */
-.mt-20 { margin-top: 20px; }
-.mb-20 { margin-bottom: 20px; }
-.text-muted { color: var(--muted); }
-.text-center { text-align: center; }
-.flex { display: flex; }
-.gap-8 { gap: 8px; }
-.gap-12 { gap: 12px; }
-.gap-16 { gap: 16px; }
-.items-center { align-items: center; }
-.justify-between { justify-content: space-between; }
-</style>
+    .mt-20 {
+      margin-top: 20px;
+    }
+
+    .mb-20 {
+      margin-bottom: 20px;
+    }
+
+    .text-muted {
+      color: var(--muted);
+    }
+
+    .text-center {
+      text-align: center;
+    }
+
+    .flex {
+      display: flex;
+    }
+
+    .gap-8 {
+      gap: 8px;
+    }
+
+    .gap-12 {
+      gap: 12px;
+    }
+
+    .gap-16 {
+      gap: 16px;
+    }
+
+    .items-center {
+      align-items: center;
+    }
+
+    .justify-between {
+      justify-content: space-between;
+    }
+  </style>
 </head>
+
 <body>
   <header class="header">
     <div class="container">
@@ -457,7 +550,7 @@ body {
             <div class="logo-text" style="font-size: 12px; color: var(--muted);">Co-Innovation Hiring</div>
           </div>
         </div>
-        
+
         <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu">
           <div class="hamburger">
             <span></span>
@@ -465,14 +558,14 @@ body {
             <span></span>
           </div>
         </button>
-        
+
         <nav class="nav" id="main-nav">
           <button class="nav-btn active" data-view="dashboard">Dashboard</button>
           <button class="nav-btn" data-view="challenges">Challenges</button>
           <button class="nav-btn" data-view="resources">Learn B2B Design</button>
           <button class="nav-btn" data-view="submissions">My Submissions</button>
         </nav>
-        
+
         <div class="role-toggle">
           <button class="active" data-role="applicant">Applicant</button>
           <button data-role="recruiter">Recruiter</button>
@@ -482,17 +575,21 @@ body {
   </header>
 
   <main class="container" style="padding-top: 24px; padding-bottom: 60px;">
-    
+
     <!-- APPLICANT VIEW -->
     <div id="applicant-view" class="view-content">
-      
+
       <!-- Welcome Banner -->
-      <div class="card" style="background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: white; border: 0;">
+      <div class="card"
+        style="background: linear-gradient(135deg, var(--accent), var(--accent-2)); color: white; border: 0;">
         <h1 style="margin: 0 0 12px 0; font-size: 28px;">Welcome to Würth Talent Connect</h1>
-        <p style="margin: 0; font-size: 16px; opacity: 0.95;">Learn B2B design, solve real-world challenges, showcase your skills, and get hired. Your journey to innovation starts here.</p>
+        <p style="margin: 0; font-size: 16px; opacity: 0.95;">Learn B2B design, solve real-world challenges, showcase
+          your skills, and get hired. Your journey to innovation starts here.</p>
         <div style="margin-top: 20px; display: flex; gap: 12px; flex-wrap: wrap;">
           <button class="btn" style="background: white; color: var(--accent);">Start First Challenge</button>
-          <button class="btn" style="background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3);">Explore Guidelines</button>
+          <button class="btn"
+            style="background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3);">Explore
+            Guidelines</button>
         </div>
       </div>
 
@@ -504,7 +601,7 @@ body {
             <div class="card-subtitle">Track your journey and skill development</div>
           </div>
         </div>
-        
+
         <div class="stats-grid">
           <div class="stat-card">
             <div class="stat-value">3</div>
@@ -534,14 +631,15 @@ body {
           </div>
           <button class="btn btn-small">Browse All</button>
         </div>
-        
+
         <div class="grid grid-auto">
           <div class="card challenge-card">
             <div class="challenge-header">
               <div class="challenge-icon">🎨</div>
               <div style="flex: 1;">
                 <h3 style="margin: 0 0 8px 0;">B2B Order Flow Redesign</h3>
-                <p class="text-muted" style="margin: 0; font-size: 14px;">Reimagine the ordering experience for wholesale customers</p>
+                <p class="text-muted" style="margin: 0; font-size: 14px;">Reimagine the ordering experience for
+                  wholesale customers</p>
               </div>
             </div>
             <div class="progress-bar">
@@ -560,7 +658,8 @@ body {
               <div class="challenge-icon">⚡</div>
               <div style="flex: 1;">
                 <h3 style="margin: 0 0 8px 0;">Accessibility Sprint</h3>
-                <p class="text-muted" style="margin: 0; font-size: 14px;">Make our component library WCAG 2.1 AA compliant</p>
+                <p class="text-muted" style="margin: 0; font-size: 14px;">Make our component library WCAG 2.1 AA
+                  compliant</p>
               </div>
             </div>
             <div class="progress-bar">
@@ -579,7 +678,8 @@ body {
               <div class="challenge-icon">📱</div>
               <div style="flex: 1;">
                 <h3 style="margin: 0 0 8px 0;">Mobile Inventory Scanner</h3>
-                <p class="text-muted" style="margin: 0; font-size: 14px;">Design a mobile-first inventory management interface</p>
+                <p class="text-muted" style="margin: 0; font-size: 14px;">Design a mobile-first inventory management
+                  interface</p>
               </div>
             </div>
             <div class="progress-bar">
@@ -603,13 +703,14 @@ body {
             <div class="card-subtitle">Access our design guidelines and B2B best practices</div>
           </div>
         </div>
-        
+
         <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
           <div class="resource-card">
             <div class="resource-icon">📘</div>
             <div style="flex: 1;">
               <div style="font-weight: 600; margin-bottom: 4px;">Würth Design System</div>
-              <div class="text-muted" style="font-size: 13px;">Components, patterns, and principles for B2B interfaces</div>
+              <div class="text-muted" style="font-size: 13px;">Components, patterns, and principles for B2B interfaces
+              </div>
             </div>
             <button class="btn btn-secondary btn-small">Open</button>
           </div>
@@ -646,7 +747,7 @@ body {
 
     <!-- RECRUITER VIEW -->
     <div id="recruiter-view" class="view-content" style="display: none;">
-      
+
       <!-- Recruiter Stats -->
       <div class="grid grid-3 mb-20">
         <div class="card stat-card">
@@ -672,10 +773,12 @@ body {
           </div>
           <button class="btn btn-small">View All</button>
         </div>
-        
+
         <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
           <div class="card" style="padding: 16px; display: flex; gap: 16px; align-items: center;">
-            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 20px;">SM</div>
+            <div
+              style="width: 60px; height: 60px; background: linear-gradient(135deg, var(--accent), var(--accent-2)); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 20px;">
+              SM</div>
             <div style="flex: 1;">
               <div style="font-weight: 700; margin-bottom: 4px;">Sofia Müller</div>
               <div class="text-muted" style="font-size: 14px;">UX Designer • 3 challenges completed • 88% match</div>
@@ -685,24 +788,27 @@ body {
                 <span class="badge">Accessibility</span>
               </div>
             </div>
-            <div style="display: flex; gap: 8px;">
+            <div style="display: flex; gap: 8px;" class="candidate-actions">
               <button class="btn btn-secondary btn-small">View Profile</button>
               <button class="btn btn-small">Schedule Interview</button>
             </div>
           </div>
 
           <div class="card" style="padding: 16px; display: flex; gap: 16px; align-items: center;">
-            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, #2563eb, #1e40af); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 20px;">MR</div>
+            <div
+              style="width: 60px; height: 60px; background: linear-gradient(135deg, #2563eb, #1e40af); border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 20px;">
+              MR</div>
             <div style="flex: 1;">
               <div style="font-weight: 700; margin-bottom: 4px;">Marco Rossi</div>
-              <div class="text-muted" style="font-size: 14px;">Frontend Developer • 2 challenges completed • 85% match</div>
+              <div class="text-muted" style="font-size: 14px;">Frontend Developer • 2 challenges completed • 85% match
+              </div>
               <div style="display: flex; gap: 8px; margin-top: 8px;">
                 <span class="badge">React</span>
                 <span class="badge">TypeScript</span>
                 <span class="badge">Testing</span>
               </div>
             </div>
-            <div style="display: flex; gap: 8px;">
+            <div style="display: flex; gap: 8px;" class="candidate-actions">
               <button class="btn btn-secondary btn-small">View Profile</button>
               <button class="btn btn-small">Schedule Interview</button>
             </div>
@@ -718,7 +824,7 @@ body {
             <div class="card-subtitle">Review and provide feedback</div>
           </div>
         </div>
-        
+
         <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 16px;">
           <div class="card" style="padding: 16px;">
             <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 12px;">
@@ -728,7 +834,8 @@ body {
               </div>
               <span class="badge badge-warning">Pending Review</span>
             </div>
-            <p class="text-muted" style="margin: 0 0 12px 0; font-size: 14px;">Comprehensive redesign focusing on reducing steps in bulk ordering process. Includes user research findings and interactive prototype.</p>
+            <p class="text-muted" style="margin: 0 0 12px 0; font-size: 14px;">Comprehensive redesign focusing on
+              reducing steps in bulk ordering process. Includes user research findings and interactive prototype.</p>
             <div style="display: flex; gap: 8px;">
               <button class="btn btn-small">Review Submission</button>
               <button class="btn btn-secondary btn-small">View Portfolio</button>
@@ -743,7 +850,8 @@ body {
               </div>
               <span class="badge badge-warning">Pending Review</span>
             </div>
-            <p class="text-muted" style="margin: 0 0 12px 0; font-size: 14px;">Implemented keyboard navigation and ARIA labels across component library. Includes automated testing suite.</p>
+            <p class="text-muted" style="margin: 0 0 12px 0; font-size: 14px;">Implemented keyboard navigation and ARIA
+              labels across component library. Includes automated testing suite.</p>
             <div style="display: flex; gap: 8px;">
               <button class="btn btn-small">Review Submission</button>
               <button class="btn btn-secondary btn-small">View Portfolio</button>
@@ -765,7 +873,7 @@ body {
       btn.addEventListener('click', () => {
         roleButtons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        
+
         const role = btn.dataset.role;
         if (role === 'applicant') {
           applicantView.style.display = 'block';
@@ -791,15 +899,16 @@ body {
       btn.addEventListener('click', () => {
         navButtons.forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        
+
         // Close mobile menu after selection
         if (window.innerWidth <= 900) {
           mainNav.classList.remove('active');
         }
-        
+
         alert(`Navigating to: ${btn.dataset.view}`);
       });
     });
   </script>
 </body>
+
 </html>
