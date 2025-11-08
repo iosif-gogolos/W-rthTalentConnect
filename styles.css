@@ -77,14 +77,16 @@
   }
 }
 
-/* Backdrop used on mobile when sidebar is open */
+/* Backdrop used on mobile when sidebar is open - NOW WITH BLUR */
 .backdrop{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.45);
+  background:rgba(0,0,0,0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   z-index:45;
-  transition:opacity .18s ease;
+  transition:opacity .25s ease, backdrop-filter .25s ease;
   opacity:0;
   pointer-events:none;
 }
@@ -93,7 +95,7 @@
 [data-theme="light"] .backdrop,
 @media (prefers-color-scheme: light) {
   :root:not([data-theme]) .backdrop {
-    background:rgba(0,0,0,0.25);
+    background:rgba(255,255,255,0.4);
   }
 }
 

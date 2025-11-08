@@ -723,6 +723,42 @@ document.addEventListener('keydown', (e)=>{
 
   backdrop.addEventListener('click', ()=> setSidebarOpen(false));
 
+  /* Filters & search */
+
+  document.getElementById('filter-role').addEventListener('change', renderProfiles);
+document.getElementById('filter-level').addEventListener('change', renderProfiles);
+
+// ADD THIS: Quick filter button - opens sidebar on mobile to show filters
+document.getElementById('quick-filter').addEventListener('click', ()=>{
+  // On mobile: open sidebar to reveal filters
+  if(window.innerWidth <= 900){
+    const appEl = document.documentElement;
+    if(!appEl.classList.contains('sidebar-open')){
+      appEl.classList.add('sidebar-open');
+      document.getElementById('menu-toggle').setAttribute('aria-expanded','true');
+      document.getElementById('backdrop').setAttribute('aria-hidden','false');
+    }
+  } else {
+    // On desktop: focus the first filter select
+    document.getElementById('filter-role').focus();
+  }
+});
+
+document.getElementById('global-search').addEventListener('input', (e)=>{
+  const q = e.target.value.toLowerCase().trim();
+  if(!q) { renderAll(); return; }
+  // naive search: filter profiles/hacks/files (update list areas)
+  profilesContainer.innerHTML = '';
+  state.profiles.filter(p=> (p.name+ ' ' + p.skills.join(' ') + ' ' + p.bio).toLowerCase().includes(q)).forEach(p=>{
+    const el = document.createElement('div');
+    el.className = 'profile';
+    el.innerHTML = `<div style="width:44px;height:44px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center">${p.name.split(' ').map(s=>s[0]).slice(0,2).join('')}</div>
+      <div class="meta"><div class="name">${p.name}</div><div class="role muted">${p.role}</div></div>`;
+    el.addEventListener('click', ()=>selectProfile(p.id));
+    profilesContainer.appendChild(el);
+  });
+});
+
   // Close sidebar when selecting a nav item on small screens
   document.querySelectorAll('.nav button').forEach(b=>{
     b.addEventListener('click', ()=>{
