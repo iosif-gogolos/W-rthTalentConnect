@@ -77,13 +77,16 @@
   }
 }
 
-/* Backdrop used on mobile when sidebar is open */
+
+/* Backdrop used on mobile when sidebar is open - BLUR + overlay */
 .backdrop{
   display:none;
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,0.6);
-  z-index:45;
+  background:rgba(0,0,0,0.45);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index:100;
   transition:opacity .25s ease;
   opacity:0;
   pointer-events:none;
@@ -109,7 +112,8 @@
   margin-right:8px;
   cursor:pointer;
   align-items:center;
-  z-index:60;
+  z-index:110;
+
   position:relative;
 }
 .hamburger-box{display:inline-block;width:26px;height:18px;position:relative}
@@ -503,51 +507,36 @@ body{
   .hamburger{ display:inline-flex; }
   
   /* OFF-CANVAS sidebar - HIDDEN by default */
-  .sidebar{
+  .sidebar {
     position: fixed;
     left: 0;
     top: 0;
     bottom: 0;
-    width: 280px;
+    width: 100vw; /* Cover full viewport width */
+    max-width: 320px; /* Optional: limit sidebar width */
+    background: linear-gradient(180deg, var(--card), #071026); /* Ensure solid background */
+    z-index: 120;
     transform: translateX(-100%);
     transition: transform .28s cubic-bezier(.2,.9,.2,1);
-    z-index:50;
     box-shadow: 0 0 40px rgba(2,6,23,0.8);
-    max-height: 100vh;
     overflow-y: auto;
-    margin: 0;
     border-radius: 0;
-    order: unset;
   }
-  
-  /* OPEN state */
-  .sidebar-open .sidebar{
+  .sidebar-open .sidebar {
     transform: translateX(0);
   }
-  .sidebar-open .backdrop{
-    display:block;
-    opacity:1;
-    pointer-events:auto;
+  .sidebar-open .backdrop {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
   }
-  
-  /* Prevent body scroll when sidebar open */
-  .sidebar-open body{
+  .sidebar-open body {
     overflow: hidden;
   }
-  
-  /* Ensure app doesn't scroll horizontally */
-  .app{ 
-    overflow-x: hidden;
+  .app, .main, .rightcol {
     position: relative;
     z-index: 1;
   }
-  
-  /* Ensure main content stays below sidebar */
-  .main{
-    position: relative;
-    z-index: 1;
-  }
-  
   .brand h1{ font-size:13px; }
   .nav button{ font-size:13px; padding:9px; }
   .profiles{ grid-template-columns: 1fr; }
@@ -575,7 +564,10 @@ body{
   .card{
     position: relative;
     z-index: auto;
+    
   }
+    .hamburger{ display:inline-flex; }
+
 }
 
 /* Mobile: small touches */
